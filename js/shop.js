@@ -10,6 +10,24 @@ window.Shop={
             Shop.displayProducts(response.content);
         });
     },
+
+    addProductToCart: function(productId){
+
+        var request={
+            // todo: take customer id dinamically somehow
+            customerId:28,
+            productId:productId
+        };
+
+        $.ajax({
+            url:Shop.API_BASE_URL+"/carts",
+            method:"PUT",
+            contentType:"application/json",
+            data: JSON.stringify(request)
+        }).done(function(){
+            window.location.replace("cart.html")
+        })
+    },
 getProductHtml:function(product) {
  return `<div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
